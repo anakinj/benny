@@ -1,0 +1,8 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  NewCops: enable
+  Exclude:
+    - 'examples/oj/gemfiles/*'
+
+Style/Documentation:
+  Enabled: false
