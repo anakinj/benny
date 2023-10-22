@@ -1,0 +1,4 @@
+source "https://rubygems.org"
+
+gem "benny"
+gem "jwt", git:'https://github.com/jwt/ruby-jwt', branch: 'version-3.0'
