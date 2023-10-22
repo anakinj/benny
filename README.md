@@ -30,7 +30,7 @@ my_benny_project/
 ```
 
 ### Gemfile
-Dependencies are managed by [bundler](https://github.com/rubygems/rubygems/tree/master/bundler) and therefore a Gemfile is required
+Dependencies are managed by [bundler](https://github.com/rubygems/rubygems/tree/master/bundler) and therefore a Gemfile is required.
 
 ```ruby
 source 'https://rubygems.org'
@@ -39,7 +39,7 @@ gem 'benny'
 ```
 
 ### benchmarks/bench_helper.rb
-Configures the benchmarks and defines the different environments
+Configures the benchmarks and defines the different environments.
 
 A simple configuration configuring two environments to be compared:
 
@@ -121,7 +121,7 @@ end
 
 ### Benny::Reporters::Stdout (default)
 
-Prints the results in a ascii table to STDOUT
+Prints the results in a ascii table to STDOUT.
 
 ### Benny::Reporters::Gruff
 
