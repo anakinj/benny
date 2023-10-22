@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ['antmanj@gmail.com']
 
   spec.summary = 'Benny the benchmark gem'
-  spec.description = 'Define and maintain your benchmarks in a familiarway.' \
+  spec.description = 'Define and maintain your benchmarks in a familiar way. ' \
                      'Execute on different variations of environments'
   spec.homepage = 'https://github.com/anakinj/benny'
   spec.license = 'MIT'
