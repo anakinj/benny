@@ -1,5 +1,8 @@
 # Benny, your Ruby benchmarking buddy
 
+[![Gem Version](https://badge.fury.io/rb/benny.svg)](https://badge.fury.io/rb/jwt)
+[![Build Status](https://github.com/anakinj/benny/workflows/test/badge.svg?branch=main)](https://github.com/anakinj/benny/actions)
+
 This tool was created to answer the question: How does this version of a library compare to another version of the same library?
 For a familiar feel for Rubyists, [rspec](https://github.com/rspec/rspec-core) has been as inspiration for how the gem is used.
 
