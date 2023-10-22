@@ -66,6 +66,6 @@ end
 
 ### gemfiles/ folder
 
-The gemfile folder contains the different Gemfiles for version variations. These are referenced from the [benchmark/bench_helper.rb](#benchmarksbench_helperrb)) file.
+The gemfile folder contains the different Gemfiles for version variations. These are referenced from the [benchmark/bench_helper.rb](#benchmarksbench_helperrb) file.
 [Aappraisal](https://github.com/thoughtbot/appraisal) can be used in combination with Benny for managing the different gemfiles.
 
