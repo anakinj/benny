@@ -1,19 +1,22 @@
 # Benny, your Ruby benchmarking buddy
 
 This tool was created to answer the question: How does this version of a library compare to another version of the same library?
-For a familiar feel for Rubyists, [rspec](https://github.com/rspec/rspec-core) has been as inspiration for how benchmarks are structured and defined.
+For a familiar feel for Rubyists, [rspec](https://github.com/rspec/rspec-core) has been as inspiration for how the gem is used.
 
-## Basic structure of a benchmarking project
+## Getting started
 
-A simple benchmark project looks something like this. To generate such a project you can execute:
+With the snippet bellow benny will help you scaffold a simple benchmarking project.
 
 ```bash
 gem install benny
 benny init my_benny_project
+
 cd my_benny_project
 bundle install
 bundle exec benny
 ```
+
+## Structure of a benchmarking project
 
 ```
 my_benny_project/
@@ -35,9 +38,6 @@ source 'https://rubygems.org'
 gem 'benny'
 ```
 
-### benchmarks/ folder
-Contains files that define environments and benchmarks.
-
 ### benchmarks/bench_helper.rb
 Configures the benchmarks and defines the different environments
 
@@ -55,7 +55,7 @@ end
 ```
 
 ### benchmarks/*_bench.rb files
-All the files ending with the suffix `_bench.rb` will be evaluated and added to the benchmark suite.
+All the files ending with the suffix `_bench.rb` will be loaded and added to the benchmark suite.
 
 
 ```ruby
@@ -74,8 +74,55 @@ The gemfile folder contains the different Gemfiles for version variations. These
 
 ## Defining benchmarks
 
-TBD
+`Benny.define` is used to define benchmark suites.
+
+```ruby
+Benny.define do
+
+  warmup iterations: 2
+
+  before do
+   # Initialization
+  end
+
+  benchmark 'Simple calculation' do
+    700_000.times do
+      sum = 1+1
+    end
+  end
+
+  benchmark 'Complicated calculation' do
+    700_000.times do
+      product = 10*4
+    end
+  end
+end
+```
+
+### Before block
+
+`before` blocks can be registered to do initialization before benchmarks are executed. There can be multiple before blocks and are called in the order they have been defined.
+
+### Warmup
+
+The `warmup` command can be used to control how many times the benchmark is executed before starting to measure the result. The default iterator count is 1.
 
 ## Reporters
 
-TBD
+A reporter has the responsibility of presenting the benchmark results in different ways.
+
+A reporter be defined via the `Benny.configure` mechanism.
+
+```ruby
+Benny.configure do |c|
+  c.reporter(::Benny::Reporters::Stdout.new)
+end
+```
+
+### Benny::Reporters::Stdout (default)
+
+Prints the results in a ascii table to STDOUT
+
+### Benny::Reporters::Gruff
+
+Generates a graph using the [gruff](https://github.com/topfunky/gruff) gem.

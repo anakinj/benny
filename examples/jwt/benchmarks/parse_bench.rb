@@ -6,8 +6,8 @@ Benny.define do
   end
 
   benchmark 'HS256 encode-decode' do
-    100000.times do
-      token = JWT.encode({pay: 'load'}, 'secret', 'HS256')
+    100_000.times do
+      token = JWT.encode({ pay: 'load' }, 'secret', 'HS256')
       JWT.decode(token, 'secret', true, { algorithm: 'HS256' })
     end
   end
