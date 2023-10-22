@@ -69,3 +69,19 @@ end
 The gemfile folder contains the different Gemfiles for version variations. These are referenced from the [benchmark/bench_helper.rb](#benchmarksbench_helperrb) file.
 [Aappraisal](https://github.com/thoughtbot/appraisal) can be used in combination with Benny for managing the different gemfiles.
 
+## Defining benchmarks
+
+TBD
+
+## Reporters
+
+TBD
+
+# Development and Tests
+
+## How to contribute
+See [CONTRIBUTING](CONTRIBUTING.md).
+
+## License
+
+See [LICENSE](LICENSE).
