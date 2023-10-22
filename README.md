@@ -80,12 +80,3 @@ TBD
 ## Reporters
 
 TBD
-
-# Development and Tests
-
-## How to contribute
-See [CONTRIBUTING](CONTRIBUTING.md).
-
-## License
-
-See [LICENSE](LICENSE).
