@@ -2,60 +2,68 @@
 
 module Benny
   module DSL
-    class EnvironmentEntry
-      attr_reader :name
+    class Definition
+      class WarmupOptions
+        attr_reader :iterations
 
-      def initialize(name, &block)
-        @name = name
-        instance_exec(&block)
+        def initialize(iterations:)
+          @iterations = iterations
+        end
       end
 
-      def gemfile(path = nil)
-        @gemfile = path unless path.nil?
-        @gemfile
+      class BenchmarkEntry
+        attr_reader :name, :block, :definition
+
+        def initialize(definition, name, &block)
+          @name = name
+          @block = block
+          @definition = definition
+        end
+      end
+
+      attr_reader :benchmarks, :before_blocks, :warmup_options
+
+      def initialize(&block)
+        @before_blocks = []
+        @benchmarks    = []
+        @warmup_options = WarmupOptions.new(iterations: 1)
+        instance_eval(&block)
+      end
+
+      def warmup(iterations:)
+        @warmup_options = WarmupOptions.new(iterations: iterations)
+      end
+
+      def before(&block)
+        @before_blocks << block
+      end
+
+      def benchmark(name, &block)
+        @benchmarks << BenchmarkEntry.new(self, name, &block)
       end
     end
 
-    class BenchmarkEntry
-      attr_reader :name, :block, :type
-
-      def initialize(name, options, &block)
-        @name = name
-        @block = block
-        @type = options[:type] || [:time]
-      end
+    def define(&block)
+      @definitions ||= []
+      @definitions << Definition.new(&block)
     end
 
-    def environment(name, &block)
-      @environments ||= []
-      @environments << EnvironmentEntry.new(name, &block)
-    end
-
-    def benchmark(name, options = {}, &block)
-      @benchmarks ||= []
-      @benchmarks << BenchmarkEntry.new(name, options, &block)
-    end
-
-    def bennies_path(path = nil)
-      @bennies_path = path unless path.nil?
-      @bennies_path || 'benchmarks/**/*_bench.rb'
+    def benchmarks
+      definitions.flat_map(&:benchmarks)
     end
 
     def load(path)
       instance_eval(File.read(path), path, 1)
     end
 
-    def load_bennies(path)
-      Dir[path].each do |file|
-        load(file)
-      end
+    def configuration
+      @configuration ||= Configuration.new
     end
 
-    def setup(&block)
-      instance_exec(&block)
-      load_bennies(bennies_path)
+    def configure
+      yield(configuration)
     end
 
-    attr_reader :environments, :benchmarks
+    attr_reader :environments, :definitions
   end
 end

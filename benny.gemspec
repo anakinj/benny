@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.email = ['antmanj@gmail.com']
 
   spec.summary = 'Benny the benchmark gem'
-  spec.description = 'Helps you maintain your benchmarks and execute on different variations of environments'
+  spec.description = 'Define and maintain your benchmarks in a familiarway.' \
+                     'Execute on different variations of environments'
   spec.homepage = 'https://github.com/anakinj/benny'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 2.5.0'
@@ -28,10 +29,9 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  # Uncomment to register a new dependency of your gem
-  spec.add_dependency 'benchmark-memory'
-  spec.add_dependency 'shellwords'
-  spec.add_dependency 'thor'
+  spec.add_dependency 'gruff', '~> 0.23'
+  spec.add_dependency 'terminal-table', '~> 3.0'
+  spec.add_dependency 'thor', '~> 1.3'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

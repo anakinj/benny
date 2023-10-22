@@ -5,26 +5,33 @@ require 'thor'
 
 module Benny
   class CLI < Thor
+    def self.exit_on_failure?
+      true
+    end
     default_task :all
 
-    desc 'all', 'Execute all bechmarks in all environments'
+    desc 'init NAME', 'Create a new benny project'
+    def init(name)
+      require_relative 'init'
+      Init.create(name)
+    end
+
+    desc 'all', 'Run all bechmarks in all environments'
     def all
-      Benny.init
-      Executors::Environment.run!(Benny.environments)
+      require 'benny'
+      Benny.load_env
+      Benny.execute
     end
 
     desc 'execute', 'Execute a set of benchmarks'
-    option :type, type: :array, required: true
+    method_options 'result-path' => :string
+    method_options 'env-name' => :string
     def execute
-      Benny.init
-      options['type'].each do |type|
-        case type
-        when 'time'
-          Executors::BenchmarkTime.run!(Benny.benchmarks)
-        when 'memory'
-          Executors::BenchmarkMemory.run!(Benny.benchmarks)
-        end
-      end
+      require 'benny'
+      Benny.load_env
+      Executors::Benchmark.execute(benchmarks: Benny.benchmarks,
+                                   reporter: Reporters::File.new(env_name: options['env-name'],
+                                                                 path: options['result-path']))
     end
   end
 end
