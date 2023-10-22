@@ -7,9 +7,12 @@ For a familiar feel for Rubyists, [rspec](https://github.com/rspec/rspec-core) h
 
 A simple benchmark project looks something like this. To generate such a project you can execute:
 
-```
+```bash
 gem install benny
 benny init my_benny_project
+cd my_benny_project
+bundle install
+bundle exec benny
 ```
 
 ```
@@ -26,7 +29,7 @@ my_benny_project/
 ### Gemfile
 Dependencies are managed by [bundler](https://github.com/rubygems/rubygems/tree/master/bundler) and therefore a Gemfile is required
 
-```
+```ruby
 source 'https://rubygems.org'
 
 gem 'benny'
@@ -39,7 +42,8 @@ Contains files that define environments and benchmarks.
 Configures the benchmarks and defines the different environments
 
 A simple configuration configuring two environments to be compared:
-```
+
+```ruby
 Benny.configure do |config|
   config.environment 'Version 1' do
     gemfile 'gemfiles/version-1.gemfile'
@@ -54,7 +58,7 @@ end
 All the files ending with the suffix `_bench.rb` will be evaluated and added to the benchmark suite.
 
 
-```
+```ruby
 Benny.define do
   benchmark 'Simple calculation' do
     700_000.times do
