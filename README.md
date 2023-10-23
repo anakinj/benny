@@ -64,9 +64,7 @@ All the files ending with the suffix `_bench.rb` will be loaded and added to the
 ```ruby
 Benny.define do
   benchmark 'Simple calculation' do
-    700_000.times do
-      sum = 1+1
-    end
+    sum = 1+1
   end
 end
 ```
@@ -89,15 +87,11 @@ Benny.define do
   end
 
   benchmark 'Simple calculation' do
-    700_000.times do
-      sum = 1+1
-    end
+    sum = 1+1
   end
 
   benchmark 'Complicated calculation' do
-    700_000.times do
-      product = 10*4
-    end
+    product = 10*4
   end
 end
 ```

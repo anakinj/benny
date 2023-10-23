@@ -17,7 +17,7 @@ module Benny
           labels << metric[:env_name]
           metric[:benchmarks].each do |bm|
             result[bm[:name]] ||= []
-            result[bm[:name]] << bm[:total].round(5)
+            result[bm[:name]] << (format('%.16f', bm[:total]))
           end
         end
 

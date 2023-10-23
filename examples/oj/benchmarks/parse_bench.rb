@@ -9,14 +9,10 @@ Benny.define do
   end
 
   benchmark 'Simple parse' do
-    700_000.times do
-      Oj.load(Oj.dump(@h))
-    end
+    Oj.load(Oj.dump(@h))
   end
 
   benchmark 'String parse' do
-    700_000.times do
-      Oj.load(Oj.dump('string'))
-    end
+    Oj.load(Oj.dump('string'))
   end
 end
