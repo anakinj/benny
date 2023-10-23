@@ -1,6 +1,6 @@
 # Benny, your Ruby benchmarking buddy
 
-[![Gem Version](https://badge.fury.io/rb/benny.svg)](https://badge.fury.io/rb/jwt)
+[![Gem Version](https://badge.fury.io/rb/benny.svg)](https://badge.fury.io/rb/benny)
 [![Build Status](https://github.com/anakinj/benny/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/anakinj/benny/actions)
 
 This tool was created to answer the question: How does this version of a library compare to another version of the same library?
